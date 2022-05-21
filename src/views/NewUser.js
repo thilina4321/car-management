@@ -98,7 +98,7 @@ const router = useHistory()
               <hr />
               <Card.Body>
                 <Form>
-                { isNext == false &&  <Fragment> <Card.Title as="h4"> User Details </Card.Title>
+                { isNext === false &&  <Fragment> <Card.Title as="h4"> User Details </Card.Title>
                 <hr />
 
                   <Row>
@@ -150,8 +150,7 @@ const router = useHistory()
                   >
                     Previous
                   </Button><Button
-                                      onClick={()=>createUserAndCar()}
-
+                    onClick={()=>createUserAndCar()}
                     className="btn-fill pull-right"
                     style={{margin:'1rem'}}
                     variant="info"

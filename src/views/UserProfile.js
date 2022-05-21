@@ -35,6 +35,7 @@ function User() {
     const [ac, setac] = useState("")
 
     const [firstName, setfirstName] = useState("")
+    const [_id, setId] = useState("")
     const [lastName, setlastName] = useState("")
     const [email, setemail] = useState("")
     const [defaultPassword, setdefaultPassword] = useState("")
@@ -49,11 +50,12 @@ function User() {
       const request = await httpRequest({url :`users/find-user-and-car/${params.id}`, method:'get'})
       console.log(request.success);
       if(request.success){
-        const {firstName, secondName, email} = request.user 
+        const {firstName, secondName, email, _id} = request.user 
         const {year , price, description, image, transmission, fuelType, 
         seats, ac, vehicleName } = request.car 
 
         setyear(year)
+        setId(_id)
         setVehicleName(vehicleName)
         setimage(image)
         setprice(price)
@@ -72,6 +74,14 @@ function User() {
     const sendEmail = ()=>{
       router.push(`/admin/emails/${email}`)
     }
+
+    const deleteUser = async()=>{
+      const request = await httpRequest({url: `user/delete/${_id}`, method:'delete'})
+      console.log(_id);
+      if(request.success){
+        router.push('/admin/user')
+      }
+    }
     
 
   return (
@@ -82,8 +92,8 @@ function User() {
             <Card>
               <Card.Header>
                 <Card.Title as="h4">{`User - ${firstName} ${lastName}`} </Card.Title>
-
-                <div style={{textAlign:'end'}}>
+                <Row>
+                <div style={{textAlign:'end', width:'100%'}}>
                     <Button
                     onClick={sendEmail}
                     className="btn-fill pull-right"
@@ -92,7 +102,18 @@ function User() {
                   >
                     Send Email
                   </Button>
+                 
+                    <Button
+                    onClick={deleteUser}
+                    className="btn-warning pull-right"
+                    style={{margin:'1rem'}}
+                    variant="info"
+                  >
+                    Delete User
+                  </Button>
                   </div>
+                  </Row>
+
               </Card.Header>
 
               <hr />

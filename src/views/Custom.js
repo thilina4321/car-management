@@ -58,7 +58,7 @@ const params = useParams()
                 
 
                     <InputComponent  label="Car Brand" value={brand} setValue={setBrand}  />
-                    <InputComponent  label="Color" type="color" value={color} setValue={setColor}  />
+                    {/* <InputComponent  label="Color" type="color" value={color} setValue={setColor}  /> */}
                     {berror && <p style={{color:'red'}}> *Please enter details </p> }
                    <div style={{textAlign:'end'}}>
                     <Button
