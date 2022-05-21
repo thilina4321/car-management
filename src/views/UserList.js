@@ -1,5 +1,7 @@
 import { httpRequest } from 'http/Http';
 import React, { useEffect, useState } from 'react'
+import logo from '../assets/img/faces/face-3.jpg'
+
 import {
     Badge,
     Button,
@@ -48,7 +50,7 @@ const UserList = () => {
                     <img
                       alt="..."
                       className="avatar border-gray"
-                      src={require("assets/img/faces/face-3.jpg").default}
+                      src={logo}
                     ></img>
                     <h5 className="title"> {`${user.firstName} ${user.secondName}`} </h5>
                 </div>

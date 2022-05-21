@@ -1,7 +1,7 @@
 import InputComponent from "components/InputComponent/InputComponent";
 import { httpRequest } from "http/Http";
 import React, { Fragment, useEffect, useState } from "react";
-
+import logo from '../assets/img/faces/face-3.jpg'
 // react-bootstrap components
 import {
   Badge,
@@ -17,13 +17,14 @@ import {
 
 
 import { useParams} from 'react-router'
+import { useHistory } from "react-router-dom";
 
 function User() {
 
-const params = useParams()
-console.log(params);
+    const params = useParams()
+    const router = useHistory()
 
-const [vehicleName, setVehicleName] = useState("")
+    const [vehicleName, setVehicleName] = useState("")
     const [year, setyear] = useState("")
     const [image, setimage] = useState("default")
     const [price, setprice] = useState("")
@@ -67,7 +68,10 @@ const [vehicleName, setVehicleName] = useState("")
       }
     }
 
-    console.log("hellow rold");
+
+    const sendEmail = ()=>{
+      router.push(`/admin/emails/${email}`)
+    }
     
 
   return (
@@ -78,6 +82,17 @@ const [vehicleName, setVehicleName] = useState("")
             <Card>
               <Card.Header>
                 <Card.Title as="h4">{`User - ${firstName} ${lastName}`} </Card.Title>
+
+                <div style={{textAlign:'end'}}>
+                    <Button
+                    onClick={sendEmail}
+                    className="btn-fill pull-right"
+                    style={{margin:'1rem'}}
+                    variant="info"
+                  >
+                    Send Email
+                  </Button>
+                  </div>
               </Card.Header>
 
               <hr />
@@ -86,7 +101,7 @@ const [vehicleName, setVehicleName] = useState("")
                     <img
                       alt="..."
                       className="avatar border-gray"
-                      src={require("assets/img/faces/face-3.jpg").default}
+                      src={logo}
                       style={{height:'100px', width:'100px'}}
                     />
                 </div>
@@ -112,7 +127,7 @@ const [vehicleName, setVehicleName] = useState("")
                     <img
                       alt="..."
                       className="avatar border-gray"
-                      src={require("assets/img/faces/face-3.jpg").default}
+                      src={logo}
                       style={{height:'100px', width:'100px'}}
                     />
                 </div>
@@ -126,16 +141,7 @@ const [vehicleName, setVehicleName] = useState("")
                     <InputComponent  label="fuel type" value={fuelType} setValue={setfuelType}  />
                     <InputComponent  label="seat" value={seats} setValue={setseats}  />
                     <InputComponent  label="ac" value={ac} setValue={setac}  />
-                   {/* <div style={{textAlign:'end'}}>
-                    <Button
-                    onClick={()=>createUserAndCar()}
-                    className="btn-fill pull-right"
-                    style={{margin:'1rem'}}
-                    variant="info"
-                  >
-                    Create User
-                  </Button>
-                  </div> */}
+                   
                   </Fragment> 
                   
 

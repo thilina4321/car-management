@@ -4,8 +4,14 @@ import { useLocation } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "routes.js";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  const router = useHistory()
+  const logoutHandler = ()=>{
+    localStorage.removeItem("car-admin-user")
+    router.replace('/login')
+  }
   const location = useLocation();
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
@@ -75,7 +81,7 @@ function Header() {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <span className="no-icon">Log out</span>
+                <span onClick={logoutHandler} className="no-icon">Log out</span>
               </Nav.Link>
             </Nav.Item>
           </Nav>

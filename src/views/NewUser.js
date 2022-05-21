@@ -70,7 +70,6 @@ const router = useHistory()
             password: defaultPassword}
 
             const request = await httpRequest({ url : 'users/create-user-and-car', method :'post', data})
-            console.log(request);
 
         if(request.success){
             console.log(request.user._id);

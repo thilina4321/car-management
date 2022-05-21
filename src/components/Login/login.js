@@ -1,6 +1,21 @@
-import React from 'react'
+import { httpRequest } from 'http/Http'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './style.css'
 const LoginComponent = () => {
+
+  const [email, setemail] = useState("")
+  const [password, setPassword] = useState("")
+  const router = useHistory()
+
+  const login = async()=>{
+
+    const request = await httpRequest({url:'admin/login', method:'post', data : {email,password}})
+    if(request.success){
+      localStorage.setItem("car-admin-user", request.data)
+      router.push('/admin/dashboard')
+    }
+  }
   return (
     <div className='bgC'>
             <div style={{height:'200px'}}></div>
@@ -9,8 +24,7 @@ const LoginComponent = () => {
        <div className="left">
 		<div className="overlay">
 		<h1>Car Admin Portal</h1>
-		{/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Curabitur et est sed felis aliquet sollicitudin</p> */}
+		
 		
 		</div>
         </div>
@@ -18,9 +32,9 @@ const LoginComponent = () => {
 		<p>Car Management System. System for change the future in the car management Sri Lanka</p>
 		
         <div className="inputs">
-			<input type="text" placeholder="user name" />
+			<input type="text" placeholder="user name" value={email} onChange={(e)=>setemail(e.target.value)} />
 			<br />
-			<input type="password" placeholder="password" />
+			<input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 		</div>
 
         <div className="remember-me--forget-password">
@@ -29,7 +43,7 @@ const LoginComponent = () => {
 
         <div style={{height:'50px'}}></div>
 
-        <button style={{width:'100%'}}>Login</button>
+        <button onClick={login} style={{width:'100%'}}>Login</button>
         </div>
 	</div> 
     </div>

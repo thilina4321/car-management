@@ -30,9 +30,8 @@ function FavouriteCars() {
                     <tr>
                       <th className="border-0">ID</th>
                       <th className="border-0">Name</th>
-                      <th className="border-0">Salary</th>
-                      <th className="border-0">Country</th>
-                      <th className="border-0">City</th>
+                      <th className="border-0">Favourite Count</th>
+
                     </tr>
                   </thead>
                   <tbody>

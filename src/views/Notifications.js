@@ -1,6 +1,6 @@
 import InputComponent from "components/InputComponent/InputComponent";
 import { httpRequest } from "http/Http";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // react-bootstrap components
 import {
@@ -17,18 +17,27 @@ import {
 
 
 import { useParams} from 'react-router'
+import { useLocation } from "react-router-dom";
 
 function SendMails() {
 
 const params = useParams()
-console.log(params);
+const loc = useLocation()
+console.log(loc.pathname.split('/')[3]);
 
 const [email, setemail] = useState("")
 const [text, settext] = useState("")
 const [subject, setsubject] = useState("")
 
 
-    
+useEffect(()=>{
+  if(loc.pathname.split('/')[3]){
+    setemail(loc.pathname.split('/')[3])
+  }
+}, [loc.pathname])
+
+
+    console.log("email");
 
     
 
@@ -63,8 +72,7 @@ const [subject, setsubject] = useState("")
                         <Form.Control
                           onChange={(e)=> settext(e.target.value)}
                           cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                          that two seat Lambo."
+                          defaultValue={text}
                           placeholder="Enter email description "
                           rows="10"
                           as="textarea"

@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 
 import AdminNavbar from "components/Navbars/AdminNavbar";
@@ -13,6 +13,7 @@ import Users from '../views/UserProfile'
 import routes from "routes.js";
 
 import sidebarImage from "assets/img/sidebar-3.jpg";
+import { useHistory } from "react-router-dom";
 
 function Admin() {
   const [image, setImage] = React.useState(sidebarImage);
@@ -20,6 +21,16 @@ function Admin() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
+
+  const user = localStorage.getItem("car-admin-user")
+  const router = useHistory()
+
+  useEffect(()=>{
+    if(!user){
+      router.replace('/login')
+    }
+  }, [user])
+
 
   const newRoutes = [...routes, {
     path: "/name/:id",
