@@ -46,8 +46,11 @@ const router = useHistory()
 
     const getBrand = async ()=>{
         const data = await httpRequest({ url : 'home/brand', method :'get'})
-        console.log(data['data'], "==========");
-        setBrands(data.data)
+        if(data.success){
+          setBrands(data.data)
+          setVehicleName(data.data[0].brand)
+        }
+        
       }
     
       useEffect(() => {   
