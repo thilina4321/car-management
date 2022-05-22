@@ -6,14 +6,18 @@ const LoginComponent = () => {
 
   const [email, setemail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const router = useHistory()
 
   const login = async()=>{
 
+    setIsLoading(true)
     const request = await httpRequest({url:'admin/login', method:'post', data : {email,password}})
+    setIsLoading(false)
+
     if(request.success){
       localStorage.setItem("car-admin-user", request.data)
-      router.push('/admin/dashboard')
+      router.push('/admin/user')
     }
   }
   return (
@@ -43,7 +47,7 @@ const LoginComponent = () => {
 
         <div style={{height:'50px'}}></div>
 
-        <button onClick={login} style={{width:'100%'}}>Login</button>
+        <button onClick={login} style={{width:'100%'}}>{isLoading ? "Please wait ..." : "Login"}</button>
         </div>
 	</div> 
     </div>

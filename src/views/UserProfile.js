@@ -11,6 +11,7 @@ import {
   Navbar,
   Nav,
   Container,
+  Table,
   Row,
   Col,
 } from "react-bootstrap";
@@ -50,25 +51,31 @@ function User() {
       const request = await httpRequest({url :`users/find-user-and-car/${params.id}`, method:'get'})
       console.log(request.success);
       if(request.success){
-        const {firstName, secondName, email, _id} = request.user 
-        const {year , price, description, image, transmission, fuelType, 
-        seats, ac, vehicleName } = request.car 
+        const {firstName, secondName, email, _id} = request.user
 
-        setyear(year)
         setId(_id)
-        setVehicleName(vehicleName)
-        setimage(image)
-        setprice(price)
-        setdescription(description)
-        settransmission(transmission)
-        setfuelType(fuelType)
-        setseats(seats)
-        setac(ac)
+        // setimage(image)
         setfirstName(firstName)
         setlastName(secondName)
         setemail(email)
       }
     }
+
+    
+
+    const [list, setlist] = useState([])
+  
+  const getUsers = async ()=>{
+    const reauest = await httpRequest({ url : `cars/booked/${params.id}`, method :'get'})
+    if(reauest.success){
+      console.log(reauest);
+      setlist(reauest.data)
+    }
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
 
 
     const sendEmail = ()=>{
@@ -142,33 +149,36 @@ function User() {
                   <div style={{textAlign:'center', marginTop:'70px'}} />
 
 
-                  <hr />
-
-                  <div className="author" style={{textAlign:'center', marginTop:'70px'}} >
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={logo}
-                      style={{height:'100px', width:'100px'}}
-                    />
-                </div>
-
-                  <Fragment>
-                    <InputComponent  label="Vehicle Name" value={vehicleName} setValue={setVehicleName}  />
-                    <InputComponent  label="year" value={year} setValue={setyear}  />
-                    <InputComponent  label="price" type="number" value={price} setValue={setprice}  />
-                    <InputComponent  label="description" value={description} setValue={setdescription}  />
-                    <InputComponent  label="transmission" value={transmission} setValue={settransmission}  />
-                    <InputComponent  label="fuel type" value={fuelType} setValue={setfuelType}  />
-                    <InputComponent  label="seat" value={seats} setValue={setseats}  />
-                    <InputComponent  label="ac" value={ac} setValue={setac}  />
-                   
-                  </Fragment> 
+                 
                   
 
                   
                   <div className="clearfix"></div>
                 </Form>
+
+
+
+                <Table className="table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th className="border-0">ID</th>
+                      <th className="border-0">Vehicle Name</th>
+                      <th className="border-0">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { list.map((l, i)=> <tr key={l._id}>
+                      <td>{i + 1}</td>
+                      <td> {l.carName} </td>
+                      <td> Rs - {l.price}</td>
+                    </tr> ) }
+
+                    
+                  </tbody>
+                </Table>
+
+
+
               </Card.Body>
             </Card>
           </Col>

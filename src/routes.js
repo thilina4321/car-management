@@ -1,7 +1,7 @@
 
 import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserList";
-import TableList from "views/TableList.js";
+import TableList from "views/Booked";
 import Typography from "views/Typography.js";
 import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
@@ -10,22 +10,29 @@ import Upgrade from "views/Upgrade.js";
 import FavouriteCars from "./views/FavouriteCars";
 import Login from "./views/Login";
 import NewUser from "./views/NewUser";
-import Custom from "./views/Custom";
+import CarList from "./views/CarList";
 
 const dashboardRoutes = [
   
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   icon: "nc-icon nc-chart-pie-35",
+  //   component: Dashboard,
+  //   layout: "/admin",
+  // },
   {
     path: "/user",
     name: "User Profile",
     icon: "nc-icon nc-circle-09",
     component: UserProfile,
+    layout: "/admin",
+  },
+  {
+    path: "/cars",
+    name: "Car List",
+    icon: "nc-icon nc-circle-09",
+    component: CarList,
     layout: "/admin",
   },
   {
@@ -51,7 +58,7 @@ const dashboardRoutes = [
   // },
   {
     path: "/new-customers",
-    name: "New User",
+    name: "New Car",
     icon: "nc-icon nc-paper-2",
     component: NewUser,
     layout: "/admin",
@@ -71,13 +78,13 @@ const dashboardRoutes = [
     component: Notifications,
     layout: "/admin",
   },
-  {
-    path: "/custom",
-    name: "General",
-    icon: "nc-icon nc-settings-gear-64",
-    component: Custom,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/custom",
+  //   name: "General",
+  //   icon: "nc-icon nc-settings-gear-64",
+  //   component: Custom,
+  //   layout: "/admin",
+  // },
   
 ];
 

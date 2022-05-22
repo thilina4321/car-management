@@ -28,6 +28,7 @@ console.log(loc.pathname.split('/')[3]);
 const [email, setemail] = useState("")
 const [text, settext] = useState("")
 const [subject, setsubject] = useState("")
+const [isLoading, setisLoading] = useState(false)
 
 
 useEffect(()=>{
@@ -37,15 +38,14 @@ useEffect(()=>{
 }, [loc.pathname])
 
 
-    console.log("email");
 
     
 
     const sendMail = async()=>{
       const data = {email, text, subject}
-      console.log(data);
-      const request = await httpRequest({ url : 'home/mail', method :'post', data })
-      console.log(request['data'], "==========");
+      setisLoading(true)
+      await httpRequest({ url : 'home/mail', method :'post', data })
+      setisLoading(false)
     }
 
   return (
@@ -61,10 +61,7 @@ useEffect(()=>{
                 <Form>
                 <InputComponent md="12" label="Email" value={email} setValue={setemail}  />
                 <InputComponent md="12" label="Subject" value={text} setValue={setsubject}  />
-
-                  
-                  
-                  
+     
                   <Row>
                     <Col md="12">
                       <Form.Group>
@@ -80,13 +77,15 @@ useEffect(()=>{
                       </Form.Group>
                     </Col>
                   </Row>
+                  <div style={{textAlign:'end'}}>
                   <Button
                   onClick={sendMail}
                     className="btn-fill pull-right"
                     variant="info"
                   >
-                    Send Mail
+                    { isLoading ? "Sending Mail .... " : "Send Mail"}
                   </Button>
+                  </div>
                   <div className="clearfix"></div>
                 </Form>
               </Card.Body>

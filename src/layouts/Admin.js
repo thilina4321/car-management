@@ -9,6 +9,7 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 // new routes
 import Users from '../views/UserProfile'
+import CarProfile from '../views/CarProfile'
 
 import routes from "routes.js";
 
@@ -32,13 +33,22 @@ function Admin() {
   }, [user])
 
 
-  const newRoutes = [...routes, {
+  const newRoutes = [...routes, 
+    {
     path: "/name/:id",
     name: "User",
     icon: "nc-icon nc-chart-pie-35",
     component: Users,
     layout: "/admin",
-  },]
+  },
+    {
+    path: "/car/:id",
+    name: "Car",
+    icon: "nc-icon nc-chart-pie-35",
+    component: CarProfile,
+    layout: "/admin",
+  },
+]
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {

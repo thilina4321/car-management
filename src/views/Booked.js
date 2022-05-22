@@ -13,22 +13,30 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
-function FavouriteCars() {
-  
+function TableList() {
 
   const [list, setlist] = useState([])
   
   const getUsers = async ()=>{
-    const reauest = await httpRequest({ url : 'cars/fav-list', method :'get'})
+    const reauest = await httpRequest({ url : 'cars/booked', method :'get'})
     if(reauest.success){
-      setlist(reauest.cars)
+      console.log(reauest);
+      setlist(reauest.data)
     }
   }
 
   useEffect(() => {
     getUsers()
   }, [])
+
+  const router = useHistory()
+
+  const navigateTouser = async(id)=>{
+    router.push(`/admin/name/${id}`)
+  }
+
   return (
     <>
       <Container fluid>
@@ -36,7 +44,7 @@ function FavouriteCars() {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                <Card.Title as="h4">Favourite Cars</Card.Title>
+                <Card.Title as="h4">Most Booked Cars</Card.Title>
                 
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
@@ -44,18 +52,17 @@ function FavouriteCars() {
                   <thead>
                     <tr>
                       <th className="border-0">ID</th>
-                      <th className="border-0">Name</th>
-                      <th className="border-0">Favourite Count</th>
-
+                      <th className="border-0">Vehicle Name</th>
+                      <th className="border-0">User Name</th>
                     </tr>
                   </thead>
                   <tbody>
-                  { list.map((l, i)=> <tr key={l.id} 
-                  >
+                    { list.map((l, i)=> <tr key={l._id} onClick={()=>navigateTouser(l.userId)}>
                       <td>{i + 1}</td>
-                      <td> {l.vehicleName} </td>
-                      <td>{l.fav.length}</td>
+                      <td> {l.carName} </td>
+                      <td>{l.userName}</td>
                     </tr> ) }
+
                     
                   </tbody>
                 </Table>
@@ -69,4 +76,4 @@ function FavouriteCars() {
   );
 }
 
-export default FavouriteCars;
+export default TableList;

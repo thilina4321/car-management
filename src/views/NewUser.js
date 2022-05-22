@@ -67,23 +67,18 @@ const router = useHistory()
             fuelType,
             seats,
             ac,
-            firstName,
-            secondName :lastName,
-            email,
-            password: defaultPassword}
+          }
 
-            const request = await httpRequest({ url : 'users/create-user-and-car', method :'post', data})
+            const request = await httpRequest({ url : 'users/create-car', method :'post', data})
 
         if(request.success){
-            console.log(request.user._id);
-            router.push(`/admin/name/${request.user._id}` )
+            console.log(request.car._id);
+            router.push(`/admin/car/${request.car.id}` )
         }
     
       }
 
-      const onSelect = (e)=>{
-          setVehicleName(e.target.value)
-      }
+      
     
   return (
     <Fragment>
@@ -98,41 +93,13 @@ const router = useHistory()
               <hr />
               <Card.Body>
                 <Form>
-                { isNext === false &&  <Fragment> <Card.Title as="h4"> User Details </Card.Title>
-                <hr />
+                
 
-                  <Row>
-                    <InputComponent md="6" label="First Name" value={firstName} setValue={setfirstName}  />
-                    
-                    <InputComponent md="6" label="Last Name" value={lastName} setValue={setlastName}  />
-                   
-                    
-                  </Row>
-                 
-                  <InputComponent  label="Email" value={email} setValue={setemail}  />
-                  <InputComponent  label="Default Password" value={defaultPassword} setValue={setdefaultPassword}  />
-                  <div style={{textAlign:'end'}}>
-
-                  <Button
-                    onClick={()=>setIsNext(true)}
-                    style={{margin:'1rem'}}
-                    className="btn-fill pull-right"
-                    variant="info"
-                  >
-                    Next
-                  </Button>
-                  </div>
-
-                  </Fragment>}
-
-                  { isNext && <Fragment>
+                   <Fragment>
                     <Card.Title as="h4"> Car Details </Card.Title>
                     <hr />
 
-                    <label> Vehicle Name </label>
-                    <select onChange={onSelect} style={{width:'99%', height:'35px', margin:'auto', marginTop:'5px', borderRadius: '5px'}}> 
-                       {brands.map(b=>  <option key={b.brand} value={b.brand}> {b.brand} </option>) }
-                    </select>
+                    <InputComponent  label="Vehicle Name" value={vehicleName} setValue={setVehicleName}  />
                     <InputComponent  label="year" value={year} setValue={setyear}  />
                     <InputComponent  label="price" type="number" value={price} setValue={setprice}  />
                     <InputComponent  label="description" value={description} setValue={setdescription}  />
@@ -142,14 +109,6 @@ const router = useHistory()
                     <InputComponent  label="ac" value={ac} setValue={setac}  />
                    <div style={{textAlign:'end'}}>
                     <Button
-                    className="btn-fill pull-right"
-                    style={{margin:'1rem'}}
-                    variant="info"
-                    onClick={()=>setIsNext(false)}
-
-                  >
-                    Previous
-                  </Button><Button
                     onClick={()=>createUserAndCar()}
                     className="btn-fill pull-right"
                     style={{margin:'1rem'}}
@@ -158,7 +117,7 @@ const router = useHistory()
                     Create User
                   </Button>
                   </div>
-                  </Fragment> }
+                  </Fragment> 
                   
 
                   

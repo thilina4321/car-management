@@ -8,11 +8,10 @@ const Login = () => {
   console.log(user);
   useEffect(()=>{
     if(user){
-      router.replace('/admin/dashboard')
+      router.replace('/admin/user')
     }
   } , [user])
 
-  console.log("router");
   return (
     <div>
         <LoginComponent />
