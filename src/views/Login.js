@@ -5,7 +5,6 @@ import LoginComponent from '../components/Login/login'
 const Login = () => {
   const user = localStorage.getItem("car-admin-user")
   const router = useHistory()
-  console.log(user);
   useEffect(()=>{
     if(user){
       router.replace('/admin/user')

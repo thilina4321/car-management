@@ -55,7 +55,6 @@ function User() {
         seats, ac, vehicleName } = request.data 
 
 
-        console.log(params.id, "id");
 
         setyear(year)
         setId(_id)
@@ -81,7 +80,6 @@ function User() {
       const request = await httpRequest({url: `home/cars/${params.id}`, method:'delete'})
       setisLoading(false)
 
-      console.log(_id);
       if(request.success){
         router.push('/admin/cars')
       }

@@ -69,7 +69,6 @@ function Dashboard() {
 
   
 
-  console.log(details);
 
 
 

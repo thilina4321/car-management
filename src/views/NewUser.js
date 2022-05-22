@@ -72,7 +72,6 @@ const router = useHistory()
             const request = await httpRequest({ url : 'users/create-car', method :'post', data})
 
         if(request.success){
-            console.log(request.car._id);
             router.push(`/admin/car/${request.car.id}` )
         }
     

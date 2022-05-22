@@ -23,7 +23,6 @@ function SendMails() {
 
 const params = useParams()
 const loc = useLocation()
-console.log(loc.pathname.split('/')[3]);
 
 const [email, setemail] = useState("")
 const [text, settext] = useState("")

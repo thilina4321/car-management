@@ -49,7 +49,6 @@ function User() {
 
     const getUser = async ()=>{
       const request = await httpRequest({url :`users/find-user-and-car/${params.id}`, method:'get'})
-      console.log(request.success);
       if(request.success){
         const {firstName, secondName, email, _id} = request.user
 
@@ -68,7 +67,6 @@ function User() {
   const getUsers = async ()=>{
     const reauest = await httpRequest({ url : `cars/booked/${params.id}`, method :'get'})
     if(reauest.success){
-      console.log(reauest);
       setlist(reauest.data)
     }
   }
@@ -84,7 +82,6 @@ function User() {
 
     const deleteUser = async()=>{
       const request = await httpRequest({url: `user/delete/${_id}`, method:'delete'})
-      console.log(_id);
       if(request.success){
         router.push('/admin/user')
       }

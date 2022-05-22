@@ -28,7 +28,6 @@ const UserList = () => {
       const reauest = await httpRequest({ url : 'users/find-users', method :'get'})
       if(reauest.success){
         setUsers(reauest.users)
-        console.log(reauest.users);
       }
     }
   

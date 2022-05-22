@@ -35,9 +35,7 @@ const params = useParams()
             return setBError(true)
         }
 
-        console.log(data);
         const req = await httpRequest({url:'home/brand', method:'post', data})
-        console.log(req);
 
     }
      

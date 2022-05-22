@@ -22,7 +22,6 @@ function TableList() {
   const getUsers = async ()=>{
     const reauest = await httpRequest({ url : 'cars/booked', method :'get'})
     if(reauest.success){
-      console.log(reauest);
       setlist(reauest.data)
     }
   }
