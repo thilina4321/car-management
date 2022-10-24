@@ -11,6 +11,11 @@ const LoginComponent = () => {
 
   const login = async()=>{
 
+    // add default login
+    localStorage.setItem("car-admin-user", "default_login")
+    router.push('/admin/user')
+    return;
+
     setIsLoading(true)
     const request = await httpRequest({url:'admin/login', method:'post', data : {email,password}})
     setIsLoading(false)

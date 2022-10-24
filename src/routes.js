@@ -14,13 +14,7 @@ import CarList from "./views/CarList";
 
 const dashboardRoutes = [
   
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: "nc-icon nc-chart-pie-35",
-  //   component: Dashboard,
-  //   layout: "/admin",
-  // },
+  
   {
     path: "/user",
     name: "User Profile",
@@ -49,13 +43,7 @@ const dashboardRoutes = [
     component: FavouriteCars,
     layout: "/admin",
   },
-  // {
-  //   path: "/loyal-customers",
-  //   name: "Loyal Customers",
-  //   icon: "nc-icon nc-paper-2",
-  //   component: Typography,
-  //   layout: "/admin",
-  // },
+  
   {
     path: "/new-customers",
     name: "New Car",
@@ -63,28 +51,7 @@ const dashboardRoutes = [
     component: NewUser,
     layout: "/admin",
   },
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "nc-icon nc-atom",
-  //   component: Icons,
-  //   layout: "/admin",
-  // },
- 
-  {
-    path: "/emails",
-    name: "Emails",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-  // {
-  //   path: "/custom",
-  //   name: "General",
-  //   icon: "nc-icon nc-settings-gear-64",
-  //   component: Custom,
-  //   layout: "/admin",
-  // },
+  
   
 ];
 
