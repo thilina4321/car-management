@@ -86,7 +86,7 @@ const router = useHistory()
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Making User By Admin</Card.Title>
+                <Card.Title as="h4">Making Car By Admin</Card.Title>
               </Card.Header>
 
               <hr />
@@ -112,8 +112,9 @@ const router = useHistory()
                     className="btn-fill pull-right"
                     style={{margin:'1rem'}}
                     variant="info"
+                    disabled
                   >
-                    Create User
+                    Create Car
                   </Button>
                   </div>
                   </Fragment> 

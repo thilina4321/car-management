@@ -3,31 +3,29 @@ import React, { useEffect, useState } from 'react'
 import logo from '../assets/img/faces/face-3.jpg'
 
 import {
-    Badge,
-    Button,
     Card,
-    Form,
-    Navbar, 
-    Nav,
     Container,
-    Row,
     Col,
   } from "react-bootstrap";
 
 import {useHistory} from 'react-router'
 const UserList = () => {
-    const [cars, setUsers] = useState([])
+    const [cars, setCars] = useState([])
     const router = useHistory()
     
 
-    const userHandler = (id)=>{
-        router.push('/admin/car/' + id)
-    }
+    const defaultCars = [
+      {vehicleName:'BMW', price:'$20000'},
+      {vehicleName:'AUDI', price:'$30000'},
+      {vehicleName:'BENZ', price:'$40000'},
+    ]
 
     const getUsers = async ()=>{
+      //set defult cars
+      setCars(defaultCars)
       const reauest = await httpRequest({ url : 'home/cars', method :'get'})
       if(reauest.success){
-        setUsers(reauest.data)
+        setCars(reauest.data)
       }
     }
   
@@ -39,7 +37,15 @@ const UserList = () => {
   return (
         <Container fluid>
 
-            {cars.map((car)=>  <Col style={{cursor:'pointer'}} onClick={()=>userHandler(car.id)} key={car.id} md="12">
+<div style={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+            flexWrap:'wrap'
+          }}>
+            <div style={{width:'700px'}}>
+
+            {cars.map((car)=>  <Col style={{cursor:'pointer'}} key={car.id} md="12">
             <Card className="card-user">
               <div className="card-image">
                
@@ -61,6 +67,8 @@ const UserList = () => {
               
             </Card>
           </Col>  )}
+          </div>
+          </div>
     
         
 
